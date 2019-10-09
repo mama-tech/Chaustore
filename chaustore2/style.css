@@ -1,0 +1,74 @@
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+header{
+display:flex;
+flex-direction: row;
+  }
+header img {
+  width: 14%;
+margin-top: -6%;
+margin-left: 1%;
+}
+header h1 {
+margin-top: 0%;
+margin-left: 60%;
+font-weight: 100;
+}
+header h2 {
+  margin-left: 1200px;
+font-size: 109%;
+}
+.monTableau{
+  text-align: center;
+  margin: 0 auto;
+  width: 70%;
+}
+ul {
+  list-style-type: none;
+}
+th{
+  background: white;
+  border: solid grey 2px;
+
+}
+td{
+  background: white;
+  border: solid grey 2px;
+}
+#imgBoutton{
+  height: 50px;
+  width: 50px;
+  position: fixed;
+}
+#formAdmin form {
+  display: flex;
+      flex-direction: column;
+      width: 20%;
+      margin: auto;
+}
+#formAdmin h2 {
+  text-align:center;
+}
+#formAdmin{
+  margin-top: 4%;
+}
+input[type=text], input[type=password],select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+input[type=submit] {
+  background-color: #e74c3c;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit]:hover {
+  background-color: #c0392b;
+}
