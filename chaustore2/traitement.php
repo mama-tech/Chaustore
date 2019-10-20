@@ -1,19 +1,15 @@
+<?php require_once('connectDB.php'); ?>
 <!doctype html>
 <html lang="fr">
 <head>
   <meta charset="utf-8">
   <title>Chaustore - Traitement</title>
-  <link rel="stylesheet" href="chaustore.css">
-  <script src="chaustore.js"></script>
+  <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 </head>
 <body>
   <h1> RESULTAT</h1>
 <?php
-$conn = mysqli_connect('164.132.110.233','simplon','xCIwyTKo3)?(31;*');
-mysqli_select_db($conn,'simplon_chaustore');
-mysqli_set_charset($conn,'utf8');
-
 
 if (isset($_POST['productView'])) {
 $sql = ' select name from product ;';
@@ -32,17 +28,16 @@ if(!empty($_POST)){
     if(empty($_POST['productAdd'])){
         $msg .= "- Please select Product !.<br/>";
     }
-
     if(empty($_POST['productName'])){
         $msg .= "- Please enter this field name .<br/>";
     }
-    if(empty($_POST['productCategory'])){
+    if(empty($_POST['select_category'])){
         $msg .= "- Please enter this field category .<br/>";
     }
-    if(empty($_POST['productCategory'])){
+    if(empty($_POST['select_brand'])){
         $msg .= "- Please enter this field brand .<br/>";
     }
-    if(empty($_POST['productColor'])){
+    if(empty($_POST['select_color'])){
         $msg .= "- Please enter this field color .<br/>";
     }
     if(empty($_POST['productPrice'])){
@@ -54,51 +49,33 @@ if(!empty($_POST)){
     if(empty($msg)){
         $msg ="- Congratulations, your products are added.<br/>";
     }
+    var_dump($_POST);
+    $req = "INSERT INTO product (
+            name,
+            category_id,
+            brand_id,
+            color_id,
+            price,
+            gender)
+            VALUES ('".$_POST['productName']."',
+            (select id from category where name = '".$_POST['select_category']."'),
+            (select id from brand where name = '".$_POST['select_brand']."'),
+            (select id from color where name = '".$_POST['select_color']."'),
+            '".$_POST['productPrice']."',
+            '".$_POST['productGender']."')";
+
+      $res = $conn->query($req);
+
+      if($res){
+          $msg = "Thank you".$_POST['productAdd'].", Your registration has been taken into account";
+          $error = false;
+      }
+      else {
+          $msg = "An error occured please try again later";
+          $error = true;
+      }
+      echo $msg;
 }
-    //
-    // if(!empty($msg)){
-    //     $msg = "- Error. Please check your entry :<br/>".$msg;
-    //     $error = true;
-    // }
-    // else {
-    //   $conn = mysqli_connect('164.132.110.233','simplon','xCIwyTKo3)?(31;*');
-    //   mysqli_select_db($conn,'simplon_chaustore');
-    //   mysqli_set_charset($conn,'utf8');
-    //   if (!$conn) {
-    //       echo "Error: Can not connect to MySQL." . PHP_EOL;
-    //       echo "Debug error : " . mysqli_connect_errno() . PHP_EOL;
-    //       echo " Debug error: " . mysqli_connect_error() . PHP_EOL;
-    //       exit;
-    //   }
-      $req = "INSERT INTO product (
-              name,
-              category_id,
-              brand_id,
-              color_id,
-              price,
-              gender)
-              VALUES (
-              '".$_POST['productName']."',
-              '".$_POST['productCategory']."',
-              '".$_POST['productBrand']."',
-              '".$_POST['productColor']."',
-              '".$_POST['productPrice']."',
-              '".$_POST['productGender']."'
-              )";
-
-        $res = $link->query($req);
-
-        if($res){
-            $msg = "Thank you".$_POST['productAdd'].", Your registration has been taken into account";
-            $error = false;
-        }
-        else {
-            $msg = "An error occured please try again later";
-            $error = true;
-        }
-
-//     echo '<p>' .$msg. '</p>';
-// }
 
 ?>
 </body>

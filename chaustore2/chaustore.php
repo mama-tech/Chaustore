@@ -14,38 +14,50 @@
 <body>
   <?php include_once('headerDeconnect.php');
   if(isset($_SESSION['username'])){ ?>
-  <header>
-  <img src="./image/LogoChaustore.jpg" alt="logochaustore"/>
+
       <!-- <H1> ADMINISTRATOR INTERFACE</H1> -->
-  </header>
+<nav class="menu">
+  <ul>
+  <li><a href="disconnect.php">LOG OUT</a></li>
+  <li><a href="boutique.php">GO TO E-SHOP</a></li>
+  <li><a href="#ccbs">COLOR</a></li>
+  <li><a href="#ccbs">SIZE</a></li>
+  <li><a href="#ccbs">BRAND</a></li>
+  <li><a href="#ccbs">PRICE</a></li>
+  <li><a href="#stock">STOCKS</a></li>
+  <li><a href="#ccbs">CATEGORY</a></li>
+  <li><a href="#product">PRODUCT</a></li>
+  <li><h3>Welcome, <?php echo $_SESSION['username']; ?><h3></li>
+  </ul>
+</nav>
 
-      <h2> PRODUCT </h2>
+<img id="logo"src="./image/LogoChaustore.jpg" alt="logochaustore"/>
 
+<div class="positionProduct">
+<div class="prdct">
+<h2 id="product"> PRODUCT </h2>
 <form action="view_product.php" method="post">
     <fieldset class="seeProduct">
       <legend>VIEW</legend>
-          <label> See </label>
           <input type = "submit" value = "View">
     </fieldset>
 </form>
 <br>
 
-
-
-
-<form action="" method="post"> <!-- FORMULAIRE POUR AJOUTER UN PRODUIT -->
+<form action="traitement.php" method="post"> <!-- FORMULAIRE POUR AJOUTER UN PRODUIT -->
   <fieldset class="addProduct">
-    <legend>ADD - EDIT - DELETE</legend>
+    <legend>ADD </legend>
         <label> Add  </label>
 
 
           <label for="productName"> name :</label>
+          <br>
             <input type="text" id="productName" name="productName" value=""/>
-
+              <br/><br/>
 
           <label for="productCategory"> category :</label>
           <!-- CHOIX DE MA CATEGORIE -->
-          <select name="select_category" form="">
+          <select name="select_category">
                   <?php
                   $sql2 = "SELECT name from category";
                   $req2 = mysqli_query($conn,$sql2);
@@ -58,7 +70,7 @@
 
           <label for="productBrand"> brand :</label>
           <!-- CHOIX DE MA MARQUE -->
-          <select name="select_brand" form="">
+          <select name="select_brand">
                   <?php
                   $sql3 = "SELECT name from brand";
                   $req3 = mysqli_query($conn,$sql3);
@@ -71,7 +83,7 @@
 
           <label for="productColor"> color :</label>
           <!-- CHOIX DE MA COULEUR -->
-          <select name="select_color" form="">
+          <select name="select_color">
                   <?php
                   $sql4 = "SELECT name from color";
                   $req4 = mysqli_query($conn,$sql4);
@@ -80,7 +92,7 @@
                   }
                   ?>
               </select>
-
+                <br/><br/>
 
           <label for="productPrice"> price :</label>
           <!-- CHOIX DE MON PRIX -->
@@ -98,12 +110,13 @@
             <input type = "submit" value = "Add">
   </fieldset>
 </form>
+</div>
   <br>
-
+<div class="prdct2">
 <form action="" method="post"> <!-- FORMULAIRE POUR MODIFIER UN PRODUIT -->
   <fieldset class="editProduct">
 
-        <label> Edit in : </label>
+        <legend> EDIT </legend>
         <!-- CHOIX DE MA CATEGORIE -->
         <select name="select_brand" form="">
                 <?php
@@ -115,7 +128,7 @@
                 ?>
             </select>
 
-
+            <br/>
           <label> name :</label>
           <!-- CHOIX DU NOM -->
           <input type="text" name="productEdit" value=""/>
@@ -173,11 +186,12 @@
           <input type = "submit" value = "Edit">
   </fieldset>
 </form>
+
    <br>
 
 <form action="" method="post"> <!-- FORMULAIRE POUR SUPPRIMER UN PRODUIT -->
    <fieldset class="deleteProduct">
-          <label> Delete | </label>
+     <legend> DELETE </legend>
           <select name="select_brand" form="">
                   <?php
                   $sql2 = "SELECT name from product";
@@ -190,12 +204,16 @@
           <input type = "submit" value = "Delete">
   </fieldset>
 </form>
+</div>
+</div>
+<br/><br/><br/><br/>
 
-        <h2> STOCKS </h2>
+<div class="positionStock">
+<div class="stock">
+        <h2 id="stock"> STOCKS </h2>
    <form action="view_stock.php" method="post">
      <fieldset class="rotatinglist">
        <legend>VIEW</legend>
-      <label> See |</label>
       <input type = "submit" value = "View">
   </fieldset>
 
@@ -206,35 +224,38 @@
 
       <label> Add in :</label>
         <SELECT name="exp" size="1">
-          <OPTION>Stock
+          <option>Stock</option>
         </SELECT>
-
+        <br>
       <label> product.</label>
         <input type="text" name="category" value=""/>
       <label> size.</label>
         <input type="text" name="category" value=""/>
         <input type = "submit" value = "Add">
-
+</fieldset>
+    <br/>
+  </div>
     <br>
-
-      <label> Edit in : </label>
+  <div class="stock2">
+<fieldset>
+      <label> Edit </label>
         <SELECT name="exp" size="1">
-          <OPTION>Stock
+          <option>Stock</option>
         </SELECT>
-
+        <br/>
       <label> product.</label>
         <input type="text" name="category" value=""/>
       <label> size.</label>
         <input type="text" name="category" value=""/>
         <input type = "submit" value = "Edit">
-
+</fieldset>
     <br>
-
+<fieldset>
       <label> Delete in</label>
          <SELECT name="exp" size="1">
-            <OPTION>Stock
+        <option>Stock</option>
          </SELECT>
-
+         <br/>
       <label> product.</label>
         <input type="text" name="category" value=""/>
       <label> size.</label>
@@ -242,69 +263,79 @@
         <input type = "submit" value = "Delete">
   </fieldset>
   </form>
-
-
-  <h2>CATEGORY - COLOR - BRAND - SIZE</h2>
-  <form action="traitement.php" method="post" enctype="multipart/form-data" ="traitement.php" >
-
+</div>
+</div>
+<br/>
+<br/>
+<br/>
+  <!-- FORMULAIRE POUR VOIR UNE CATEGORY COLOUR MARQUE ET TAILLE  -->
+  <div class="positionAutre">
+  <div class="ccbs">
+  <h2 id="ccbs">CATEGORY - COLOR - BRAND - SIZE</h2>
+  <form action="view_ccbs.php" method="post" enctype="multipart/form-data" ="traitement.php" >
   <fieldset class="rotatinglist">
     <legend>VIEW</legend>
 
         <label> See :</label>
-          <SELECT name="exp" size="1">
-            <OPTION>Category
-            <OPTION>Color
-            <OPTION>Size
-            <OPTION>Brand
-          </SELECT>
-
-        <label> </label>
-          <SELECT name="nom" size="1">
-            <OPTION>name
+          <SELECT name="see" size="1">
+            <OPTION name="category">category</OPTION>
+            <OPTION name="color">color</OPTION>
+            <OPTION name="size">size</OPTION>
+            <OPTION name="brand">brand</OPTION>
           </SELECT>
           <input type = "submit" value = "View">
-
   </fieldset>
+  </form>
 
   <br>
 
+<form action="add_ccbs.php" method="post" enctype="multipart/form-data" ="traitement.php" >
   <fieldset class="rotatinglist">
-    <legend>ADD - EDIT - DELETE </legend>
+    <legend>ADD </legend>
 
         <label> Add in :</label>
-          <SELECT name="exp" size="1">
-            <OPTION>Category
-            <OPTION>Color
-            <OPTION>Size
-            <OPTION>Brand
+          <SELECT name="add" size="1">
+            <OPTION name="categoryadd">category</OPTION>
+            <OPTION name="coloradd">color</OPTION>
+            <OPTION name="sizeadd">size</OPTION>
+            <OPTION name="brandadd">brand</OPTION>
           </SELECT>
 
         <label> Name.</label>
-            <input type="text" name="category" value=""/>
+            <input type="text" name="valueadd" value=""/>
             <input type = "submit" value = "Add">
-
-
+  </fieldset>
+</form>
+</div>
   <br>
-        <label> Edit in : </label>
-          <SELECT name="exp" size="1">
-            <OPTION>Category
-            <OPTION>Color
-            <OPTION>Size
-            <OPTION>Brand
+<div class="ccbs2">
+<form action="update_ccbs.php" method="post" enctype="multipart/form-data" ="traitement.php" >
+  <fieldset>
+        <legend>EDIT </legend>
+          <SELECT name="edit" size="1">
+            <OPTION>category</OPTION>
+            <OPTION>color</OPTION>
+            <OPTION>size</OPTION>
+            <OPTION>brand</OPTION>
           </SELECT>
 
         <label> Name.</label>
-          <input type="text" name="category" value=""/>
+          <input type="text" name="valueupdate" value=""/>
+          <label> Name à modification.</label>
+          <input type="text" name="valuedit" value=""/>
           <input type = "submit" value = "Edit">
-
-
+</fieldset>
+</form>
   <br>
-       <label> Delete in</label>
-          <SELECT name="exp" size="1">
-            <OPTION>Category
-            <OPTION>Color
-            <OPTION>Size
-            <OPTION>Brand
+
+<form action="traitement.php" method="post" enctype="multipart/form-data" ="traitement.php" >
+  <fieldset>
+       <legend> DELETE</legend>
+          <SELECT name="delete" size="1">
+            <OPTION>Category<OPTION>
+            <OPTION>Color<OPTION>
+            <OPTION>Size<OPTION>
+            <OPTION>Brand<OPTION>
           </SELECT>
 
        <label> Name.</label>
@@ -312,12 +343,16 @@
           <input type = "submit" value = "Delete">
 
       </fieldset>
-  </form>
+</form>
+</div>
+
   <?php
 }
 else {
   header('Location:admin.php');
 }
 ?>
+
+
 </body>
 </html>

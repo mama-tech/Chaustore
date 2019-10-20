@@ -29,14 +29,15 @@ if(isset($_POST['submit'])){
 <link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-<img src="./image/LogoChaustore.jpg" alt="logochaustore"/>
+
+<img id="logochaus"src="./image/LogoChaustore.jpg" alt="logochaustore"/>
     <!-- <H1> ADMINISTRATOR INTERFACE</H1> -->
-</header>
 <body>
         <div id="formConn"></div>
-        <div id="formAdmin">
-            <h2>CONNEXION</h2>
+        <section id="formAdmin">
+
+            <article class="connection">
+              <h2>CONNEXION</h2>
             <form method="POST">
                 <!-- ID -->
                 <label for="">USERNAME</label>
@@ -49,7 +50,36 @@ if(isset($_POST['submit'])){
                 <!-- BUTTON -->
                 <input type="submit" name="submit" value="SEND">
             </form>
-        </div>
+          </article>
+          <article class="inscription">
+            <h2>INSCRIPTION</h2>
+            <form method="POST">
+                <!-- ID -->
+                <label for="">FIRSTNAME</label>
+                <input type="text" name="username" required>
+                <br>
+                <label for="">LASTNAME</label>
+                <input type="text" name="username" required>
+                <br>
+                <label for="">EMAIL</label>
+                <input type="email" name="username" required>
+                <br>
+                <!-- MDP -->
+                <label for="">PASSWORD</label>
+                <input type="password" name="password" required>
+                <br>
+                <label class="container"><p>Oui, j'accepte les termes et conditions et confirme que j'ai lu et compris la politique de confidentialité de CHAUSTORE.*</p>
+                  <input type="checkbox" checked="checked">
+                  <span class="checkmark"></span>
+                </label>
+                <input type="submit" name="submit" value="SEND">
+
+            </form>
+          </article>
+        </section>
     </div>
+    <footer>
+      <p>© 2019 Foot Locker. Tous droits réservés.</p>
+</footer>
 </body>
 </html>

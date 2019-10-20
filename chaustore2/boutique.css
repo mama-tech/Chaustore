@@ -1,0 +1,117 @@
+body {
+  font-family: 'Oswald', sans-serif;
+}
+
+#logo {
+  width: 14%;
+margin-top: -1%;
+margin-left: 1%;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: right;
+  margin-left: 2%;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}
+.active {
+  background-color: #4CAF50;
+}
+/* Add a gray right border to all list items, except the last item (last-child) */
+
+
+li:last-child {
+  border-right: none;
+}
+ul {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+section {
+width: 90%;
+margin: auto;
+}
+
+.search {
+  padding: 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+
+}
+.searchbutton{
+  background-color: #e74c3c;
+  border: none;
+  color: white;
+  padding: 17px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius:4px;
+}
+.panier {
+  background-color:black;
+  border: none;
+  color: white;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius:4px;
+}
+.logosearch {
+  display: flex;
+  flex-direction: row;
+}
+.recherche{
+  margin: auto;
+  margin-left: 54%;
+}
+.boutonPanier{
+  margin: auto;
+}
+.produit {
+  width: 60%;
+}
+div.gallery {
+  margin: 5px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 180px;
+}
+
+div.gallery:hover {
+  border: 1px solid #777;
+}
+
+div.gallery img {
+  width: 100%;
+  height: auto;
+}
+
+div.desc {
+  padding: 15px;
+  text-align: center;
+}
